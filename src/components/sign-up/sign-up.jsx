@@ -2,7 +2,7 @@ import React from "react";
 import FormInput from "../form-input/form-input";
 import CustomButton from "../custom-button/custom-button";
 import {auth, CreateUserProfileDocument} from "../../firebase/firebase-utils";
-import "./sign-up.scss";
+import {SignUpContainer, SignUpTitle} from "./sign-up.styles";
 
 class SignUp extends React.Component {
     constructor() {
@@ -24,7 +24,7 @@ class SignUp extends React.Component {
             alert("Password don't match");
             return;
         }
-        
+
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password);
             await CreateUserProfileDocument(user, {displayName});
@@ -47,8 +47,8 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div className='sign-up'>
-                <h2 className='title'>I do not have a account</h2>
+            <SignUpContainer>
+                <SignUpTitle>I do not have a account</SignUpTitle>
                 <span>Sign Up with your email and password</span>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
                     <FormInput
@@ -85,7 +85,7 @@ class SignUp extends React.Component {
 
                     <CustomButton type='submit'>Sign Up</CustomButton>
                 </form>
-            </div>
+            </SignUpContainer>
         )
     }
 }

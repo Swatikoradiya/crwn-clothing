@@ -1,7 +1,7 @@
-import './App.scss';
+import './App.css';
 import Homepage from "./pages/homepage/homepage";
 import React from "react";
-import {Route, Routes, Navigate} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import ShopPage from "./pages/shop/shoppage";
 import Header from "./components/header/header";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up-page";
@@ -46,7 +46,8 @@ class App extends React.Component {
                     <Route path="/" Component={Homepage}/>
                     <Route path="/shop/*" Component={ShopPage}/>
                     <Route path="/checkout" Component={CheckoutPage}/>
-                    <Route exact path="/signin" element={this.props.currentUser ? (<Navigate to="/"/>) : (<SignInAndSignUpPage/>)}/>
+                    <Route exact path="/signin"
+                           element={this.props.currentUser ? (<Navigate to="/"/>) : (<SignInAndSignUpPage/>)}/>
                 </Routes>
             </div>
         );
@@ -61,4 +62,4 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user))
 })
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,8 +1,8 @@
 import React from "react";
 import FormInput from "../form-input/form-input";
-import "./sign-in.scss";
 import CustomButton from "../custom-button/custom-button";
 import {auth, SignInWithGoogle} from "../../firebase/firebase-utils";
+import {ButtonsBarContainer, SignInContainer, SignInTitle} from "./sign-in.styles";
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -33,24 +33,33 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div className='sign-in'>
-                <h2>I already have an account</h2>
+            <SignInContainer>
+                <SignInTitle>I already have an account</SignInTitle>
                 <span>Sign In with your email and Password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <FormInput name='email' type='email' value={this.state.email} handleChange={this.handleChange}
-                               label='email' required/>
-                    <FormInput name='password' type='password' value={this.state.password}
-                               handleChange={this.handleChange} label='password'
-                               required/>
+                    <FormInput
+                        name='email'
+                        type='email'
+                        value={this.state.email}
+                        handleChange={this.handleChange}
+                        label='email'
+                        required/>
+                    <FormInput
+                        name='password'
+                        type='password'
+                        value={this.state.password}
+                        handleChange={this.handleChange}
+                        label='password'
+                        required/>
 
-                    <div className='buttons'>
+                    <ButtonsBarContainer>
                         <CustomButton type='submit'>Sign In</CustomButton>
                         <CustomButton onClick={SignInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>
-                    </div>
+                    </ButtonsBarContainer>
                 </form>
-            </div>
-        )
+            </SignInContainer>
+        );
     }
 }
 
